@@ -3,11 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <title>Para ti 💖</title>
+  <!-- Evita zoom al hacer multitouch o doble toque -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="mensaje">
-    <h1>No estes triste, estoy orgulloso de ti... 💕</h1>
+    <h1>No estés triste, estoy orgulloso de ti... 💕</h1>
     <p>Toca la pantalla y llena el mundo de corazones 😍</p>
   </div>
 
@@ -20,9 +22,11 @@
     });
 
     document.addEventListener("touchstart", function(e) {
-      let touch = e.touches[0];
-      crearCorazon(touch.pageX, touch.pageY);
-    });
+      // Soporte multitouch (varios dedos a la vez)
+      for (let i = 0; i < e.touches.length; i++) {
+        crearCorazon(e.touches[i].pageX, e.touches[i].pageY);
+      }
+    }, { passive: true });
 
     function crearCorazon(x, y) {
       const corazon = document.createElement("span");
@@ -31,24 +35,22 @@
       corazon.textContent = corazonesDisponibles[Math.floor(Math.random() * corazonesDisponibles.length)];
       corazon.classList.add("corazon");
 
-      // Posición del corazón en el clic
+      // Posición del corazón
       corazon.style.left = (x - 10) + "px";
       corazon.style.top = (y - 10) + "px";
 
-      // Tamaño aleatorio
-      let size = Math.random() * 10 + 100; // entre 20px y 40px
+      // Tamaño aleatorio (más grande en móvil)
+      let size = Math.random() * 20 + 40; 
       corazon.style.fontSize = size + "px";
 
       // Rotación aleatoria
-      let rotacion = Math.random() * 40 - 20; // entre -20 y 20 grados
+      let rotacion = Math.random() * 40 - 20; 
       corazon.style.transform = `rotate(${rotacion}deg)`;
 
       document.body.appendChild(corazon);
 
       // Eliminar después de la animación
-      setTimeout(() => {
-        corazon.remove();
-      }, 6000);
+      setTimeout(() => corazon.remove(), 6000);
     }
   </script>
 </body>
