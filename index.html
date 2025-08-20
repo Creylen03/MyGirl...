@@ -52,8 +52,45 @@
       // Eliminar después de la animación
       setTimeout(() => corazon.remove(), 6000);
     }
+          // ===== Corazones de fondo (caen solos) =====
+  const MAX_BG = 28;              // límite para no cargar el móvil
+  let bgCount = 0;
+
+  function crearCorazonFondo() {
+    // Si ya hay muchos, no creamos más por ahora
+    if (bgCount >= MAX_BG) return;
+
+    const corazon = document.createElement("span");
+    // Reutilizamos la misma lista de corazones que ya tienes
+    corazon.textContent = corazonesDisponibles[Math.floor(Math.random() * corazonesDisponibles.length)];
+    corazon.classList.add("corazon-bg");
+
+    // Posición horizontal aleatoria (en vw para toda la pantalla)
+    corazon.style.left = `${Math.random() * 100}vw`;
+
+    // Tamaño y duración aleatoria (más pequeños y lentos que los del toque)
+    const size = Math.random() * 10 + 50;           // 16px a 26px
+    const dur  = Math.random() * 4 + 10;             // 5s a 8s
+    corazon.style.fontSize = `${size}px`;
+    corazon.style.setProperty('--dur', `${dur}s`);
+
+    document.body.appendChild(corazon);
+    bgCount++;
+
+    // Cuando termine la animación, lo quitamos y liberamos el contador
+    corazon.addEventListener('animationend', () => {
+      corazon.remove();
+      bgCount--;
+    });
+  }
+
+  // Lanza pocos corazones de fondo, rítmicamente
+  // (ajusta el intervalo si los quieres más o menos frecuentes)
+  const BG_INTERVAL_MS = 600; // ~1 por segundo aprox.
+  setInterval(crearCorazonFondo, BG_INTERVAL_MS);
   </script>
 </body>
 </html>
+
 
 
