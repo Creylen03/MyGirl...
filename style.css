@@ -5,12 +5,12 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #000417;
   background: radial-gradient(circle, rgba(0, 4, 23, 1) 0%, rgba(22, 22, 122, 1) 100%);
   overflow: hidden;
   font-family: 'Arial', sans-serif;
   text-align: center;
   color: white;
+  touch-action: manipulation; /* 👈 evita gestos raros */
 }
 
 /* Mensaje en el centro */
@@ -20,7 +20,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1;
-  padding: 0 20px; /* margen lateral en móviles */
+  padding: 0 20px;
 }
 
 h1 {
@@ -37,7 +37,7 @@ p {
   position: absolute;
   font-size: 24px;
   opacity: 1;
-  pointer-events: none; /* 👈 para que no bloqueen clics */
+  pointer-events: none; 
   animation: fadeOut 6s forwards;
 }
 
@@ -49,22 +49,12 @@ p {
 
 /* 🔹 Responsive: tablets y celulares */
 @media (max-width: 768px) {
-  h1 {
-    font-size: 2em;
-  }
-
-  p {
-    font-size: 1em;
-  }
+  h1 { font-size: 2.8em; } /* 👉 más grande en móvil */
+  p { font-size: 1.4em; }
 }
 
 /* 🔹 Responsive: pantallas muy pequeñas */
 @media (max-width: 480px) {
-  h1 {
-    font-size: 1.6em;
-  }
-
-  p {
-    font-size: 0.9em;
-  }
+  h1 { font-size: 3em; } /* 👉 aún más grande en pantallas chicas */
+  p { font-size: 1.6em; }
 }
