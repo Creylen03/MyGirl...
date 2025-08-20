@@ -49,12 +49,13 @@ p {
 
 /* 🔹 Responsive: tablets y celulares */
 @media (max-width: 768px) {
-  h1 { font-size: 2.8em; } /* 👉 más grande en móvil */
-  p { font-size: 1.4em; }
+  h1 { font-size: 3.5em; } /* 👉 más grande en móvil */
+  p { font-size: 2em; }
 }
 
 /* 🔹 Responsive: pantallas muy pequeñas */
 @media (max-width: 480px) {
-  h1 { font-size: 3em; } /* 👉 aún más grande en pantallas chicas */
-  p { font-size: 1.6em; }
+  h1 { font-size: 3.5em; } /* 👉 aún más grande en pantallas chicas */
+  p { font-size: 2em; }
 }
+
