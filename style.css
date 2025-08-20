@@ -58,4 +58,28 @@ p {
   h1 { font-size: 3.5em; } /* 👉 aún más grande en pantallas chicas */
   p { font-size: 2em; }
 }
+/* Corazones de fondo (caen solos) */
+.corazon-bg {
+  position: fixed;          /* para que no dependan del scroll */
+  top: -8vh;                /* arrancan un poco por arriba */
+  left: 0;                  /* se posiciona con left en JS */
+  font-size: 30px;          /* base (luego variamos en JS) */
+  opacity: 0.5;            /* más sutiles que los del toque */
+  pointer-events: none;     /* no bloquean taps */
+  z-index: 0;               /* detrás del mensaje y de los del toque */
+  animation: caer var(--dur, 8s) linear forwards;
+}
+
+/* Los corazones que salen al tocar quedan por encima */
+.corazon {
+  z-index: 2;
+}
+
+/* Animación de caída vertical */
+@keyframes caer {
+  0%   { transform: translateY(-10vh); opacity: 0; }
+  10%  { opacity: 0.5; }
+  100% { transform: translateY(110vh); opacity: 0; }
+}
+
 
